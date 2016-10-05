@@ -50,4 +50,29 @@ The  only  situations where  I  would  consider  using  a  real  collaborator  i
     3. strange values (AKA validity or domain).
 
 * Можно отключить тесты с помощью @Ignore или условий Assume.assumeXXX()
+* В Mokito можно подменять методы с помощью when(mock).thenReturn(somthing) также можно подменять void методы doNothing().when() и doAnswer().when() or doThrow().when()
+
+* It is time to list the advantages of matchers, which are numerous:
+	* they enhance code readability, 
+	* they help us to write assertions on the right abstraction level, 
+	* they help to remove logic from tests (and encapsulate it within the matchers’ classes), 
+	* they are highly reusable, which is very important if your domain objects are complex and are tested with multiple test scenarios, 
+	* many matchers are available directly from matcher libraries - including specific matchers for work with collections (as shown in Section 6.12) or exceptions (see Section 6.4), 
+	* writing custom matchers is a relatively simple task. 
+
+The list below gives only a subset of all of the matchers available:
+	* any() matches any object (or null), 
+	* anyVararg() matches any number and values of arguments, 
+	* isNull(), isNotNull() match null and not-null values respectively, 
+	* anyBoolean(),  anyByte(),  anyChar(),  anyDouble(),  anyFloat(),  anyInt(),  anyLong(),  anyShort(), anyString() match these Java types (or null), 
+	* isA(Class<T> clazz) matches any object of a given class, 
+	* same(T value) matches an object which is the same (==) to a given object, 
+	* anyCollection(),  anyList(),  anyMap(),  anySet()  matches  any  kind  of  instance  of  each sort  of collection (or null), 
+	* refEq(T value, String... excludeFields) matches an object that is reflection-equal to the given value; allows us to specify excluded fields, not to be taken into account, 
+	* eq(boolean value), eq(byte value), eq(char value), eq(double value), eq(float value), eq(int value), eq(long value), eq(short value), eq(T value) - matches values which are equal to given arguments.
+	* startsWith(String prefix), endsWith(String suffix) match a string that starts/ends with the prefix/ suffix that is given, 
+	* contains(String substring) matches a string that contains a given substring, 
+	* matches(String regex) matches a string that matches a given regular expression.
+
+	 All of them are listed below: •ErrorCollector: collect multiple errors in one test method 13 , •ExpectedException: make flexible assertions about thrown exceptions, •ExternalResource: start and stop a server, for example, •TemporaryFolder: create fresh files, and delete after test, •TestName: remember the test name for use during the method, •TestWatcher: add logic at events during method execution, •Timeout: cause test to fail after a set time, •Verifier: fail test if object state ends up incorrect.
 

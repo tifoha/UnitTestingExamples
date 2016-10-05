@@ -10,13 +10,27 @@ import static org.mockito.Mockito.*;
  * Created by Vitaly on 03.10.2016.
  */
 public class StubbingVoidMethodsTest {
+
+    private PrintStream out = mock(PrintStream.class);
+    private static final String HELLO_WORLD = "Hello world";
+
     @Test
     public void fooShouldPrintHelloWorld() throws Exception {
-        PrintStream out = mock(PrintStream.class);
-        String string = "Hello world";
-        doNothing().when(out).println(string);
+
+        doNothing().when(out).println(HELLO_WORLD);
         StubbingVoidMethods sut = new StubbingVoidMethods(out);
-        sut.bar(string);
+        sut.bar(HELLO_WORLD);
         verify(out).println(anyString());
+
+        doAnswer(invocationOnMock -> {
+            String arg = (String) invocationOnMock.getArguments()[0];
+            System.err.println(arg);
+            return arg;
+        }).when(out).println(anyString());
+
+        sut.bar(HELLO_WORLD);
+
+        verify(out, verificationData -> {}).println(anyString());
+
     }
 }
