@@ -2,9 +2,6 @@ package UnitTestingExamples.ch06;
 
 import org.fest.assertions.Assertions;
 import org.fest.assertions.GenericAssert;
-import org.mockito.internal.util.reflection.GenericMaster;
-
-import static org.fest.assertions.Assertions.assertThat;
 
 /**
  * Created by Vitaly on 04.10.2016.
@@ -28,4 +25,5 @@ public class BookAssert extends GenericAssert<BookAssert, Book> {
 
         return this;
     }
+
 }

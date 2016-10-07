@@ -74,5 +74,20 @@ The list below gives only a subset of all of the matchers available:
 	* contains(String substring) matches a string that contains a given substring, 
 	* matches(String regex) matches a string that matches a given regular expression.
 
-	 All of them are listed below: •ErrorCollector: collect multiple errors in one test method 13 , •ExpectedException: make flexible assertions about thrown exceptions, •ExternalResource: start and stop a server, for example, •TemporaryFolder: create fresh files, and delete after test, •TestName: remember the test name for use during the method, •TestWatcher: add logic at events during method execution, •Timeout: cause test to fail after a set time, •Verifier: fail test if object state ends up incorrect.
+All of them are listed below:
+	* ErrorCollector: collect multiple errors in one test method 13 ,
+	* ExpectedException: make flexible assertions about thrown exceptions,
+	* ExternalResource: start and stop a server, for example,
+	* TemporaryFolder: create fresh files, and delete after test,
+	* TestName: remember the test name for use during the method,
+	* TestWatcher: add logic at events during method execution,
+	* Timeout: cause test to fail after a set time,
+	* Verifier: fail test if object state ends up incorrect.
 
+Для тестирования асинхронных методов можно:
+    * Заснуть
+    * Заснуть в цыкле
+    * Воспользоваться библиотекой Awaitility framework
+    * Сделать вызов синхронным
+
+Тестирование CONCURRENCY с помощью Tempus-Fugit rules
