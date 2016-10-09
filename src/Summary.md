@@ -41,7 +41,8 @@ mock object             mock                    used to verify if the SUT calls 
 
 The  only  situations where  I  would  consider  using  a  real  collaborator  instead  of  a  test  double  are  the following: 
     * the collaborator is very, very simple, preferably without any logic (e.g. some sort of "container" class with only accessors and mutators methods),
-    * the collaborator’s logic is so simple that it is clear how to set it in the desired state (and its logic will not be enhanced in the foreseeable future). Even then, I would be highly cautious, as changes are inevitable – no matter how very unlikely they may seem!
+    * the collaborator’s logic is so simple that it is clear how to set it in the desired state (and its logic will not be enhanced in the foreseeable future).
+      Even then, I would be highly cautious, as changes are inevitable – no matter how very unlikely they may seem!
 * With state testing, the SUT is a black box.
 * With interaction testing, the SUT is a white box.
 * You should select arguments that belong to these three groups:
@@ -50,7 +51,7 @@ The  only  situations where  I  would  consider  using  a  real  collaborator  i
     3. strange values (AKA validity or domain).
 
 * Можно отключить тесты с помощью @Ignore или условий Assume.assumeXXX()
-* В Mokito можно подменять методы с помощью when(mock).thenReturn(somthing) также можно подменять void методы doNothing().when() и doAnswer().when() or doThrow().when()
+* В Mokito можно подменять методы с помощью when(mock).thenReturn(something) также можно подменять void методы doNothing().when() и doAnswer().when() or doThrow().when()
 
 * It is time to list the advantages of matchers, which are numerous:
 	* they enhance code readability, 
@@ -74,7 +75,7 @@ The list below gives only a subset of all of the matchers available:
 	* contains(String substring) matches a string that contains a given substring, 
 	* matches(String regex) matches a string that matches a given regular expression.
 
-All of them are listed below:
+Common JUnit Rules:
 	* ErrorCollector: collect multiple errors in one test method 13 ,
 	* ExpectedException: make flexible assertions about thrown exceptions,
 	* ExternalResource: start and stop a server, for example,
@@ -91,3 +92,23 @@ All of them are listed below:
     * Сделать вызов синхронным
 
 Тестирование CONCURRENCY с помощью Tempus-Fugit rules
+
+* @ClassRule запускает правило в пределах всего теста, оно должно быть статическим
+* @Rule Запускает првило каждый раз
+
+* тестирование с Random значениями скорее недостаток
+
+* тестовый метод должен тестить одно правило, это не означает что там должно содержаться только одни Assert
+  (each test method should concentrate on a single feature of the SUT)
+
+Private method testing
+	* No one wants to promote private methods testing - but some of us believe that sometimes this is the only way.
+	* Some developers demand that their code be tested and 100% object-oriented, while others believe that testing is enough and do not struggle to achieve clean design. 
+	* When  writing new  code,  we  are  conveniently  positioned  to  write  it  so  that  it  is  fully  tested  via its public API. TDD might help to achieve this. 
+	* When  working with  legacy  code  we  compromise  on  private  method  testing.  Since  the  code plays unfair, we also forget about fair-play.
+* Если есть желание потестить приватный метод, это означает что скорее всего его нужно вынести в отдельный клас и тестировать через public API
+* Есть два подхода для тестирования private methods
+    1. Reflection (PowerMock)
+    2. Relaxing Access Modifiers (package-private)
+* Mockito может частично мокать объекты MySut sut = spy(new MySut());
+                                                doReturn(LocalDate.ofEpochDay(15)).when(sut).getDate();
