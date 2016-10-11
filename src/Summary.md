@@ -14,7 +14,7 @@ TDD approach
     * The Low-Hanging Fruit. This rule says: "Start with something really simple. Implement an obvious test case."
       Writing a parameter-checking test for a function (no matter what the purpose of the function in question might be),
       or, when writing a parser, starting with the test case of passing an empty String to the parsing method and receiving null in return
-    * The  Most  Informative  One. "it  does  not  matter  that  my  first  match  is  against  the  world champion - if I am going to win the whole tournament, I will have to beat him anyway".
+    * The  Most  Informative  One. "it  doe``````s  not  matter  that  my  first  match  is  against  the  world champion - if I am going to win the whole tournament, I will have to beat him anyway".
       This is probably the test which you know you still do not know how to make pass. You will simply know which one that is.
     * First The Typical Case, Then Corner Cases.
       When implementing a vending machine, begin with a client inserting a $1 coin and selecting a product which the machine has.
@@ -112,3 +112,15 @@ Private method testing
     2. Relaxing Access Modifiers (package-private)
 * Mockito может частично мокать объекты MySut sut = spy(new MySut());
                                                 doReturn(LocalDate.ofEpochDay(15)).when(sut).getDate();
+                                                
+**Table 7.3. Comparison of new operator testing approaches** 
+
+ |  | PowerMock |redesign | refactor & subclass | partial mocking
+ |---|---------|--------|-------------------|---------------|
+ |required SUT change | no change | API change, DI introduced (breaking clients) | refactoring -method extracted | refactoring -method extracted |
+ |SUT’s design | no change | improved -business logic separated from collaborators creation | slightly worse than before (method extracted to facilitate testing) | slightly worse than before (method extracted to facilitate testing) |
+ |test code | different than usual | simple | complicated, testing subclass of SUT | complicated, SUT is tested and also stubbed 
+ |amount of work |minimal | might be significant | medium | medium (but less than Refactor & Subclass) 
+ |SUT is a final class | not a problem | not a problem | can not use this technique | can not use this technique
+ 
+ * ArgumentCaptor<?> of Mockito может помочь в перехвате аргументов (verify(sut).someMethod(captor.capture()))

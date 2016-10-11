@@ -2,11 +2,9 @@ package UnitTestingExamples.ch05.exercises;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by Vitaly on 01.10.2016.
@@ -43,7 +41,7 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void userServiceShouldSetUpNewCriptedPasswordToClient() throws Exception {
+    public void userServiceShouldSetUpNewCryptedPasswordToClient() throws Exception {
         userService.assignPassword(user);
 
         verify(user).setPassword(MD5_PASSWORD);
@@ -55,5 +53,14 @@ public class UserServiceImplTest {
 
         verify(user).setPassword(MD5_PASSWORD);
         verify(userDAO).updateUser(user);
+    }
+
+    @Test
+    public void verifyOrder() throws Exception {
+        InOrder order = inOrder(securityService, user, userDAO);
+        userService.assignPassword(user);
+        order.verify(securityService).md5(anyString());
+        order.verify(user).setPassword(MD5_PASSWORD);
+        order.verify(userDAO).updateUser(user);
     }
 }

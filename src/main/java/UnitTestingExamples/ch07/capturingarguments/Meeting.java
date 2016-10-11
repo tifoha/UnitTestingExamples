@@ -1,6 +1,7 @@
-package com.practicalunittesting.chp07.capturingarguments;
+package UnitTestingExamples.ch07.capturingarguments;
 
-import java.util.Date;
+
+import java.time.LocalDateTime;
 
 /**
  * Practical Unit Testing with JUnit and Mockito - source code for examples.
@@ -10,19 +11,19 @@ import java.util.Date;
  */
 public class Meeting implements Event {
 
-	private final Date startDate;
-	private final Date endDate;
+	private final LocalDateTime startDate;
+	private final LocalDateTime endDate;
 
-	public Meeting(Date startDate, Date endDate) {
-		this.startDate = new Date(startDate.getTime());
-		this.endDate = new Date(endDate.getTime());
+	public Meeting(LocalDateTime startDate, LocalDateTime endDate) {
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
-	public Date getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public Date getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 

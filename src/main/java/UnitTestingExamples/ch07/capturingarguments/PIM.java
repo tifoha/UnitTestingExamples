@@ -1,6 +1,7 @@
-package com.practicalunittesting.chp07.capturingarguments;
+package UnitTestingExamples.ch07.capturingarguments;
 
-import java.util.Date;
+
+import java.time.LocalDateTime;
 
 /**
  * Practical Unit Testing with JUnit and Mockito - source code for examples.
@@ -10,17 +11,14 @@ import java.util.Date;
  */
 public class PIM {
 
-	private final static int MILLIS_IN_MINUTE = 60 * 1000;
-
 	private Calendar calendar;
 
 	public PIM(Calendar calendar) {
 		this.calendar = calendar;
 	}
 
-	public void addMeeting(Date startDate, int durationInMinutes) {
-		Date endDate = new Date(startDate.getTime()
-				+ MILLIS_IN_MINUTE * durationInMinutes);
+	public void addMeeting(LocalDateTime startDate, int durationInMinutes) {
+		LocalDateTime endDate = startDate.plusMinutes(durationInMinutes);
 		Meeting meeting = new Meeting(startDate, endDate);
 		calendar.addEvent(meeting);
 	}

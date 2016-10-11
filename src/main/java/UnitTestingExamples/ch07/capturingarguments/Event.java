@@ -1,4 +1,4 @@
-package com.practicalunittesting.chp07.capturingarguments;
+package UnitTestingExamples.ch07.capturingarguments;
 
 /**
  * Practical Unit Testing with JUnit and Mockito - source code for examples.
