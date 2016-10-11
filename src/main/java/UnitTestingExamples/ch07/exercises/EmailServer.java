@@ -7,4 +7,8 @@ public class EmailServer {
     public static void sendEmail(Email email) {
         System.out.printf("Mail sent: %s", email);
     }
+
+    public static void foo() {
+//        return false;
+    }
 }
