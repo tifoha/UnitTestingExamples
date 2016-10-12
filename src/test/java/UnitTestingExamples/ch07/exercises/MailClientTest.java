@@ -126,6 +126,7 @@ public class MailClientTest {
                 .sendEmail(any(Email.class));
 
         sut.sendEmail(ADDRESS, TITLE, BODY);
+
         verify(sut).getEmail(ADDRESS, TITLE, BODY);
         verify(sut).sendEmail(email);
     }
