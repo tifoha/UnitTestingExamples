@@ -124,3 +124,33 @@ Private method testing
  |SUT is a final class | not a problem | not a problem | can not use this technique | can not use this technique
  
  * ArgumentCaptor<?> of Mockito может помочь в перехвате аргументов (verify(sut).someMethod(captor.capture()))
+ 
+ * Для создаия сложных объектов можно использовать билдеры и материнские объекты
+ * Нужно больше сосредоточится на поведении SUT а не на его методах
+ * Как показывает практика забудь о реализации и сосредоточся на требованиях, в этом тебе поможет TDD
+ * Remember,  what  you  are  supposed  to  be  doing  is  testing  the  correctness  of  production  code.  Do  not make it any harder than necessary. 
+   (don't include logic into your tests)
+   
+ **Соблюдать правило Диметры**
+   
+ **Соблюдать правило Клас не должен спрашивать у других данных, а должен сам делать**
+ * Процедурно-ориентированый код трудно тестировать, поэтому нужно использовать TDD для того чтоб на выходе получить нормальный объектно ориентированый код
+ * Do not copy other sloppy work! Do not become one of the blind led by the blind! An abyss awaits you if you do. (Wow, that has really got you scared, hasn’t it?) 
+ * Every time a mock returns a mock, a fairy dies.
+ * test only the minimally necessary set of features using each test method. 
+ 
+ * We may sum things up here by saying that in order to avoid having to fix tests after code changes (which is pretty annoying, let’s face it), you should:
+   + write good tests (i.e. loosely coupled to implementation), minimizing the number of failed tests, 
+   + use test-first in all phases of the development process - both when working on new features and when introducing changes to the existing codebase.
+    
+ * we should write tests which verify the expected outcome of systems behaviour, and not the behaviour itself.
+ 
+ * there  is  a  strong  relation  between  the  quality  of  your production code and test code
+ * [Антипаттерны по тестированию ;)](https://habrahabr.ru/post/43761/)
+ * make sure never to omit the RED phase of TDD, and always witness a failing test by actually seeing it fail. 
+ 
+ ###Виды покрытия тестами
+ * Line coverage - показывает вызывалась ли эта строка кода
+ * Branch coverage - показывает выполнялось ли это условие(более сложно добится 100% покрытия)
+ 
+ * Попробовать поработать с Cobertura
