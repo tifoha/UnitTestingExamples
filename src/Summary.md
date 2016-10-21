@@ -154,3 +154,46 @@ Private method testing
  * Branch coverage - показывает выполнялось ли это условие(более сложно добится 100% покрытия)
  
  * Попробовать поработать с Cobertura
+ * Mutation testing has been around since the late 1970s but is rarely used outside academia. Executing  a  huge  number  of  mutants  and  finding  equivalent  mutants  has  been  too expensive for practical use. 
+ 
+###Test code review
+* Some idea of test code quality might be gained by looking at the following features of the test code: 
+    * the number of imported classes, 
+    * the number of test doubles used, 
+    * the length of set-up methods, 
+    * the length of test methods, 
+    * the length of test class.
+
+* Unit tests should run in a matter of seconds, so three minutes will give you enough time to run all of them. 
+    * Is there a build script which allows anyone to execute them, or do they need some manual setup (e.g. running your IDE)? If the latter, then this is something to really worry about. 
+    * How much times does it take for tests to finish? If it is more than 20 seconds (again, this is not a value you should take too literally), then these are probably not unit tests but integration tests. 
+    * Are they really run - do they really get picked out by your build script?
+
+* Code coverage    
+    
+* A good test method has a content-revealing name, which gives information on the particular scenario
+* can you tell which variable is an SUT and which are collaborators?
+* Are the test methods short and focused?
+* Can you find any for loops in the test methods
+
+* Use Meaningful Names - Everywhere
+* Self-explanatory values passed to the MockServer constructor 
+* Make Irrelevant Data Clearly Visible
+* Do not Test Many Things at Once
+
+* Структура читабельного тестового класа:
+    * private fields, 
+    * data providers, 
+    * set-up methods, 
+    * test methods, 
+    * private methods.
+
+* In conclusion, here is a list of "action points" which should help you achieve the goal of high-quality tests: 
+    * Treat test quality as the number-one issue from the very outset. 
+    * Take the refactoring phase of TDD very seriously. 
+    * Test  code  should  undergo  a  code  review  in  the  same  way  that  production  code  does.  You  need someone other than yourself to take a critical look at your tests. 
+    * "Do not live with broken windows" 23- bad things tend to get copied, and soon you will have much more to clean than you can handle. Never delay fixing them. 
+    * Think  hard  about the  test  cases  required  (see  Section  6.1)  and  follow  the  TDD  approach in  order to cover all important functionalities with tests. This is much more important than trying to satisfy requirements with respect to the measuring of code coverage! 
+    * Use code coverage to uncover untested areas. 
+    * Adhere to the various forms of programming best practice - e.g. the SRP principle and short focused methods. These apply to test code as well. 
+    * Be consistent about the naming and structure of your tests. 
