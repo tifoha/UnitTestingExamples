@@ -18,7 +18,8 @@ public class MoneyTest {
 
     private static final Object[] getMoney() {
         return new Object[][]{
-                {10, "USD"}
+                {1, "USD"}
+                ,{10, "USD"}
                 ,{20, "EUR"}
                 ,{20, "uaH"}
                 ,{20, " rur "}
