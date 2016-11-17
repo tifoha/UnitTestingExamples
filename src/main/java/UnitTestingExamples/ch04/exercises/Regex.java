@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
  */
 public class Regex {
 
-    private static final int MINIMAL_DIGIT_LENGTH = 3;
+    public static final int MINIMAL_DIGIT_LENGTH = 3;
+    public static final long EARS = 1;
+    public static final long DAYS = 1;
 
     public List<Number> getDigits(String string) {
         if (string.isEmpty()) {
