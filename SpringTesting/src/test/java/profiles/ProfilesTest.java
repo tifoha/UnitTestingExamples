@@ -1,11 +1,10 @@
-package listneres;
+package profiles;
 
 /**
  * Created by Vitaliy Sereda on 17.11.16.
  */
 
-import static org.springframework.test.context.TestExecutionListeners.MergeMode.MERGE_WITH_DEFAULTS;
-
+import org.fest.assertions.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,26 +14,19 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith (SpringJUnit4ClassRunner.class)
-@ContextConfiguration (classes = TestExecutionListenerTest.AppConfig.class)
-@TestExecutionListeners (value = {SysOutTestExecutionListener.class}, mergeMode = MERGE_WITH_DEFAULTS)
+@ContextConfiguration (classes = ProfilesTest.AppConfig.class)
 @ActiveProfiles(profiles = "profiled")
-public class TestExecutionListenerTest {
+public class ProfilesTest {
 	@Autowired
 	private String bean;
 
 	@Test
 	public void someTest() throws Exception {
 		System.out.println("executing someTest");
-		System.out.println(bean);
-	}
-
-	@Test
-	public void someOtherTest() throws Exception {
-		System.out.println("executing someOtherTest");
+		Assertions.assertThat(bean).isEqualTo("Profiled Bean.");
 	}
 
 	@Configuration
